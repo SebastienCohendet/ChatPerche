@@ -4,11 +4,13 @@
  */
 package chatperche_serveur;
 import Commun.Chaterface;
+import Commun.Requete;
 import java.net.InetAddress;
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -18,7 +20,7 @@ import java.util.LinkedList;
 public class ChatPerche extends UnicastRemoteObject implements Chaterface {
 
     private LinkedList<Integer> personnesConnectees;
-    private LinkedList<Requete>
+    private LinkedList<Message> messages;
     
     // Implémentation du constructeur
     public ChatPerche() throws java.rmi.RemoteException {
@@ -81,15 +83,16 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
      * @param message
      * @throws java.rmi.RemoteException 
      */
-    public void send(String message) throws java.rmi.RemoteException {
-        
+    public String send(String message, int idUtilisateur) throws java.rmi.RemoteException {
+        Message m = new Message(message, idUtilisateur);
+        messages.add(m);
+        return ("Vous avez écrit '" + message + "'");
     }
     
 
     
     public static void main(String args[]) {
-        
-        
+            
         int port=8888;
         String URL;
         
@@ -112,6 +115,6 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         } catch (Exception exc) {
              exc.printStackTrace();
         }
-}
+    }
 
 }
