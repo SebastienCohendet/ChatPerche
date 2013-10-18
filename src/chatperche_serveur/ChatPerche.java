@@ -4,11 +4,13 @@
  */
 package chatperche_serveur;
 import Commun.Chaterface;
+import Commun.Requete;
 import java.net.InetAddress;
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -18,7 +20,6 @@ import java.util.LinkedList;
 public class ChatPerche extends UnicastRemoteObject implements Chaterface {
 
     private LinkedList<Integer> personnesConnectees;
-    private LinkedList<Requete>
     
     // Implémentation du constructeur
     public ChatPerche() throws java.rmi.RemoteException {
@@ -26,20 +27,29 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         System.out.println("Serveur lancé");
     }
     
-
+    // Implémentation de la méthode distante
+    public String requeteClient(Requete req) throws java.rmi.RemoteException {
+        String message = req.getMessage();
+        if (message.startsWith("connect"))
+            return this.connect();
+        else if (message.startsWith("send"))
+            return this.send(message.substring(0,5), req.getClientID());
+        
+        return "default";
+    }
     /**
      * Methode de connexion : on renvoie le premier id de connexion disponible
      * @param id
      * @throws java.rmi.RemoteException 
      */
-    public int connect() throws java.rmi.RemoteException {
+    public String connect() throws java.rmi.RemoteException {
         int id = 0;
         while (!(personnesConnectees.contains(id))) {
             id++;
         } 
         personnesConnectees.add(id);
         System.out.println("L'utilisateur " + id + " s'est connecté");
-        return id;
+        return "Connecté : "+id;
     }
     
     /** 
@@ -47,11 +57,14 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
      * @param id
      * @throws java.rmi.RemoteException 
      */
-    public void bye(int id) throws java.rmi.RemoteException {
+    public String bye(int id) throws java.rmi.RemoteException {
         if (personnesConnectees.contains(id)) {
             personnesConnectees.remove(id);
         } 
-        System.out.println("L'utilisateur " + id + " s'est déconnecté");
+        String aAfficher = "L'utilisateur " + id + " s'est déconnecté";
+        System.out.println(aAfficher);
+        return aAfficher;
+        
     }
     
     
@@ -81,8 +94,9 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
      * @param message
      * @throws java.rmi.RemoteException 
      */
-    public void send(String message) throws java.rmi.RemoteException {
+    public String send(String message, int id) throws java.rmi.RemoteException {
         
+        return "dindon";
     }
     
 

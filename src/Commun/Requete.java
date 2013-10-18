@@ -9,7 +9,7 @@ package Commun;
  * @author Sebastien
  */
 public class Requete implements java.io.Serializable {
-    protected static int ClientID=0;
+    protected int ClientID=0;
     protected String message;
     
     public Requete(int id, String msg) {
@@ -17,7 +17,7 @@ public class Requete implements java.io.Serializable {
        ClientID=id;
     }
 
-    public static int getClientID() {
+    public int getClientID() {
         return ClientID;
     }
 
@@ -25,8 +25,8 @@ public class Requete implements java.io.Serializable {
         return message;
     }
 
-    public static void setClientID(int ClientID) {
-        Requete.ClientID = ClientID;
+    public void setClientID(int ClientID) {
+        this.ClientID = ClientID;
     }
 
     public void setMessage(String message) {

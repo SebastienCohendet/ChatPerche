@@ -4,6 +4,7 @@
  */
 package chien_client;
 import Commun.Chaterface;
+import Commun.Requete;
 import java.net.InetAddress;
 
 /**
@@ -14,21 +15,26 @@ import java.rmi.*;
 import java.util.Scanner;
 public class HelloClient {
 public static void main(String args[]) {
-    String URL;
-    int port=8888;
-        try {
-            // Récupération d'un stub sur l'objet serveur.
-            // Calcul de l’URL du serveur
-            URL = "//" + InetAddress.getLocalHost().getHostName() + ":"
-                    + port + "/mon_serveur";
-            Chaterface obj = (Chaterface) Naming.lookup(URL);
-            // Appel d'une méthode sur l'objet distant.
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Saisissez un message : ");
-            String message = sc.nextLine();  
-            obj.send(message);
-        } catch (Exception exc) {
-            System.out.println("Wouaf wouaf !");
-        }
-}
+        String URL;
+        int port=8888;
+        int ClientID=0;
+        
+            try {
+                // Récupération d'un stub sur l'objet serveur.
+                // Calcul de l’URL du serveur
+                URL = "//" + InetAddress.getLocalHost().getHostName() + ":"
+                        + port + "/mon_serveur";
+                Chaterface obj = (Chaterface) Naming.lookup(URL);
+                // Appel d'une méthode sur l'objet distant.
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Saisissez un message : ");
+                String message = sc.nextLine();  
+                
+                Requete req = new Requete(ClientID, message);
+                
+                System.out.println(obj.requeteClient(req));
+            } catch (Exception exc) {
+                System.out.println("Wouaf wouaf !");
+            }
+    } 
 }

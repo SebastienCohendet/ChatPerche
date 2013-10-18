@@ -12,12 +12,12 @@ public interface Chaterface extends java.rmi.Remote {
 
     public String requeteClient(Requete req) throws java.rmi.RemoteException;
     
-    public int connect() throws java.rmi.RemoteException;
+    public String connect() throws java.rmi.RemoteException;
     
-    public void bye(int id) throws java.rmi.RemoteException;
+    public String bye(int id) throws java.rmi.RemoteException;
     
     public String who() throws java.rmi.RemoteException;
     
-    public void send(String message) throws java.rmi.RemoteException;
+    public String send(String message, int id) throws java.rmi.RemoteException;
 
 }
