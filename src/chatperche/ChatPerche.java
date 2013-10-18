@@ -30,7 +30,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
     }
     
     public static void main(String args[]) {
-        int port=2069;
+        int port=8888;
         String URL;
         
 //        try { // transformation d ’une chaîne de caractères en entier
@@ -50,7 +50,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
                     + port + "/mon_serveur";
             Naming.rebind(URL, obj);
         } catch (Exception exc) {
-             System.out.println("Error de dromadaire (comprendre réseau)");
+             exc.printStackTrace();
         }
 }
 
