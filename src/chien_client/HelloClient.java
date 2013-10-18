@@ -2,8 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package chien;
-import Interfaces.Chaterface;
+package chien_client;
+import Commun.Chaterface;
 import java.net.InetAddress;
 
 /**
