@@ -89,6 +89,21 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         return ("Vous avez écrit '" + message + "'");
     }
     
+    
+     /**
+     * Fonction d'affichage de tous les messages envoyés
+     * @throws java.rmi.RemoteException 
+     */
+    public String displayMessage() throws java.rmi.RemoteException {
+        String result = "";
+        Iterator<Message> itr = this.messages.iterator();
+        while (itr.hasNext()){
+            Message m = itr.next();
+            result += "Message de l'utilisateur " + m.getClientID() + " : '" + m.getMessage() + "' \n" ;
+        }
+        return result;
+    }
+    
 
     
     public static void main(String args[]) {

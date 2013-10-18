@@ -25,6 +25,16 @@ public class Message {
         this.messageID = Message.idCourant;
         Message.idCourant++;
     }
+
+    public int getClientID() {
+        return clientID;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+    
+    
     
     
     
