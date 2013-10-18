@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package chatperche;
+import Interfaces.Chaterface;
 import java.net.InetAddress;
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
@@ -19,13 +20,12 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
      * @param args the command line arguments
      */
     
-    String message;
     // Implémentation du constructeur
-    public ChatPerche(String msg) throws java.rmi.RemoteException {
-        message = msg;
+    public ChatPerche() throws java.rmi.RemoteException {
+        System.out.println("Serveur lancé");
     }
     // Implémentation de la méthode distante
-    public void sayHello() throws java.rmi.RemoteException {
+    public void send(String message) throws java.rmi.RemoteException {
         System.out.println(message);
     }
     
@@ -44,7 +44,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
             // Création du serveur de nom - rmiregistry
             Registry registry = LocateRegistry.createRegistry(port);
             // Création d ’une instance de l’objet serveur
-            Chaterface obj = new ChatPerche("Dindon");
+            Chaterface obj = new ChatPerche();
             // Calcul de l’URL du serveur
             URL = "//" + InetAddress.getLocalHost().getHostName() + ":"
                     + port + "/mon_serveur";

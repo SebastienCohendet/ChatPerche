@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package chatperche;
+package Interfaces;
 
 /**
  *
@@ -10,7 +10,6 @@ package chatperche;
  */
 public interface Chaterface extends java.rmi.Remote {
     
-    public void sayHello()
-    throws java.rmi.RemoteException;
+    public void send(String message) throws java.rmi.RemoteException;
     
 }
