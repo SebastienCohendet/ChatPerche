@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package Commun;
 
 /**
  *
@@ -10,6 +10,6 @@ package Interfaces;
  */
 public interface Chaterface extends java.rmi.Remote {
     
-    public void send(String message) throws java.rmi.RemoteException;
+    public String requeteClient(Requete req) throws java.rmi.RemoteException;
     
 }

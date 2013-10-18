@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package chatperche;
-import Interfaces.Chaterface;
+import Commun.*;
 import java.net.InetAddress;
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
@@ -25,8 +25,9 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         System.out.println("Serveur lancé");
     }
     // Implémentation de la méthode distante
-    public void send(String message) throws java.rmi.RemoteException {
-        System.out.println(message);
+    public String requeteClient(Requete req) throws java.rmi.RemoteException {
+        
+        return req.getMessage();
     }
     
     public static void main(String args[]) {
