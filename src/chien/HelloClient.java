@@ -14,7 +14,7 @@ import java.rmi.*;
 public class HelloClient {
 public static void main(String args[]) {
     String URL;
-    int port=2069;
+    int port=8888;
         try {
             // Récupération d'un stub sur l'objet serveur.
             // Calcul de l’URL du serveur
