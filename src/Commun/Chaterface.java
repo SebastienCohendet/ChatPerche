@@ -9,8 +9,8 @@ package Commun;
  * @author Sebastien
  */
 public interface Chaterface extends java.rmi.Remote {
-    
-    public void requeteClient(String message) throws java.rmi.RemoteException;
+
+    public String requeteClient(Requete req) throws java.rmi.RemoteException;
     
     public int connect() throws java.rmi.RemoteException;
     
@@ -19,4 +19,5 @@ public interface Chaterface extends java.rmi.Remote {
     public String who() throws java.rmi.RemoteException;
     
     public void send(String message) throws java.rmi.RemoteException;
+
 }
