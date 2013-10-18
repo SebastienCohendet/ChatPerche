@@ -20,6 +20,7 @@ import java.util.LinkedList;
 public class ChatPerche extends UnicastRemoteObject implements Chaterface {
 
     private LinkedList<Integer> personnesConnectees;
+    private LinkedList<Message> messages;
     
     // Implémentation du constructeur
     public ChatPerche() throws java.rmi.RemoteException {
@@ -94,16 +95,31 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
      * @param message
      * @throws java.rmi.RemoteException 
      */
-    public String send(String message, int id) throws java.rmi.RemoteException {
-        
-        return "dindon";
+    public String send(String message, int idUtilisateur) throws java.rmi.RemoteException {
+        Message m = new Message(message, idUtilisateur);
+        messages.add(m);
+        return ("Vous avez écrit '" + message + "'");
+    }
+    
+    
+     /**
+     * Fonction d'affichage de tous les messages envoyés
+     * @throws java.rmi.RemoteException 
+     */
+    public String displayMessage() throws java.rmi.RemoteException {
+        String result = "";
+        Iterator<Message> itr = this.messages.iterator();
+        while (itr.hasNext()){
+            Message m = itr.next();
+            result += "Message de l'utilisateur " + m.getClientID() + " : '" + m.getMessage() + "' \n" ;
+        }
+        return result;
     }
     
 
     
     public static void main(String args[]) {
-        
-        
+            
         int port=8888;
         String URL;
         
@@ -126,6 +142,6 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         } catch (Exception exc) {
              exc.printStackTrace();
         }
-}
+    }
 
 }

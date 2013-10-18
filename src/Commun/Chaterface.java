@@ -18,6 +18,8 @@ public interface Chaterface extends java.rmi.Remote {
     
     public String who() throws java.rmi.RemoteException;
     
-    public String send(String message, int id) throws java.rmi.RemoteException;
+    public String send(String message, int idUtilisateur) throws java.rmi.RemoteException;
+    
+    public String displayMessage() throws java.rmi.RemoteException;
 
 }
