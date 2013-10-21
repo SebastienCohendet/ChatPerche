@@ -41,16 +41,7 @@ public static void main(String args[]) {
 
                     System.out.println(reponse);
                     
-                    //Affichage toutes les 100ms 
-                    while (true) {
-                        fenetre.affiche("resultat du displayAll");
-                        try {
-                            Thread.sleep(100);
-                         } 
-                         catch (InterruptedException e) {
-                            e.printStackTrace();
-                         }
-                    }
+                    
                 }
             } catch (Exception exc) {
                 exc.printStackTrace();;
