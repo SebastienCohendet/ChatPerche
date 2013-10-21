@@ -40,6 +40,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
                 return this.connect();
             else
                 return "Vous êtes déjà connecté !";
+        
         if (req.getClientID()==-1)
            return "Vous n'êtes pas connecté";
         else if (message.startsWith("send"))

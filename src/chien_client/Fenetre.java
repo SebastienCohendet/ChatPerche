@@ -16,7 +16,7 @@ public class Fenetre extends JFrame {
 	public Fenetre(){
 		
 		super("Application Chat");
-		this.setSize(800, 600);
+		this.setSize(600, 600);
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
