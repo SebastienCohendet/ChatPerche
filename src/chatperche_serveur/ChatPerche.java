@@ -5,12 +5,14 @@
 package chatperche_serveur;
 import Commun.Chaterface;
 import Commun.Requete;
+import java.lang.String;
 import java.net.InetAddress;
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.LinkedList;
 
 /**
@@ -104,12 +106,12 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
      * @return String
      * @throws java.rmi.RemoteException 
      */
-    public String displayAll() throws java.rmi.RemoteException {
-        String result = "";
+    public LinkedList<String> displayAll() throws java.rmi.RemoteException {
+        LinkedList<String> result = new LinkedList<String>();
         Iterator<Message> itr = this.messages.iterator();
         while (itr.hasNext()){
             Message m = itr.next();
-            result += "Client " + m.getClientID() + " a dit : " + m.getMessage() + "\n";
+            result.add("Client " + m.getClientID() + " a dit : " + m.getMessage());
         }
         return result;
     }

@@ -26,7 +26,8 @@ public static void main(String args[]) {
                         + port + "/mon_serveur";
                 Chaterface obj = (Chaterface) Naming.lookup(URL);
                 
-                threadAffichage fenetreGraphique = new threadAffichage("affichage", obj);
+                threadAffichage affichageFenetre = new threadAffichage("affichage", obj);
+                affichageFenetre.start();
                 
                 while(true) {
                     // Appel d'une méthode sur l'objet distant.
@@ -38,8 +39,10 @@ public static void main(String args[]) {
                     String reponse = obj.requeteClient(req);
                     if (reponse.startsWith("Connecté :"))
                         ClientID = Integer.parseInt(reponse.substring(11));
-                    else if (reponse.startsWith("Good bye"))
+                    else if (reponse.startsWith("Good bye")) {
                         ClientID=-1; //déconnection superficielle du client par id mis à -1
+                        affichageFenetre.arret();
+                    }
 
                     System.out.println(reponse);
                     
