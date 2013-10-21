@@ -29,7 +29,7 @@ public class threadAffichage extends Thread {
             try {
                 fenetre.affiche(obj.displayAll());
             } catch (RemoteException ex) {
-                System.out.println("Erreur serveur");
+                ex.printStackTrace();
             }
             try {
                 Thread.sleep(100);
