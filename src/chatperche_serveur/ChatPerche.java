@@ -31,21 +31,28 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
     // Implémentation de la méthode distante
     public String requeteClient(Requete req) throws java.rmi.RemoteException {
         String message = req.getMessage();
-        if (message.startsWith("connect"))
+        if (message.startsWith("connect")) 
             return this.connect();
         else if (message.startsWith("send"))
             return this.send(message.substring(0,5), req.getClientID());
-        
-        return "default";
+        else if (message.startsWith("bye"))
+            return this.bye(req.getClientID());
+         else if (message.startsWith("who"))
+            return this.who();
+        else {
+            System.out.println("Error");
+            return "gag";
+        }
+
     }
     /**
      * Methode de connexion : on renvoie le premier id de connexion disponible
      * @param id
      * @throws java.rmi.RemoteException 
      */
-    public String connect() throws java.rmi.RemoteException {
+    public String connect() {
         int id = 0;
-        while (!(personnesConnectees.contains(id))) {
+        while (personnesConnectees.contains(id)) {
             id++;
         } 
         personnesConnectees.add(id);

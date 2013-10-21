@@ -25,14 +25,20 @@ public static void main(String args[]) {
                 URL = "//" + InetAddress.getLocalHost().getHostName() + ":"
                         + port + "/mon_serveur";
                 Chaterface obj = (Chaterface) Naming.lookup(URL);
-                // Appel d'une méthode sur l'objet distant.
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Saisissez un message : ");
-                String message = sc.nextLine();  
                 
-                Requete req = new Requete(ClientID, message);
-                
-                System.out.println(obj.requeteClient(req));
+                while(true) {
+                    // Appel d'une méthode sur l'objet distant.
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Saisissez un message : ");
+                    String message = sc.nextLine();  
+
+                    Requete req = new Requete(ClientID, message);
+                    String reponse = obj.requeteClient(req);
+                    if (reponse.startsWith("Connecté :"))
+                        ClientID= Integer.parseInt(reponse.substring(11));
+
+                    System.out.println(reponse);
+                }
             } catch (Exception exc) {
                 System.out.println("Wouaf wouaf !");
             }
