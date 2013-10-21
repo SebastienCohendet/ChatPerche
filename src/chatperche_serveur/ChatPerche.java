@@ -81,7 +81,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
             personnesConnectees.remove(id);
         } 
         
-        messages.add(new Message("Connecté", id));
+        messages.add(new Message("Déconnecté", id));
         String aAfficher = "L'utilisateur " + id + " s'est déconnecté";
         System.out.println(aAfficher);
         return "Good bye";
