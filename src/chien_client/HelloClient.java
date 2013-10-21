@@ -29,7 +29,7 @@ public static void main(String args[]) {
                 Chaterface obj = (Chaterface) Naming.lookup(URL);
                 
                 threadAffichage affichageFenetre = new threadAffichage("affichage", obj);
-                affichageFenetre.start();
+                
                 
                 while(true) {
                     // Appel d'une méthode sur l'objet distant.
@@ -39,8 +39,10 @@ public static void main(String args[]) {
 
                     Requete req = new Requete(ClientID, message);
                     String reponse = obj.requeteClient(req);
-                    if (reponse.startsWith("Connecté :"))
+                    if (reponse.startsWith("Connecté :")) {
                         ClientID = Integer.parseInt(reponse.substring(11));
+                        affichageFenetre.start();
+                    }
                     else if (reponse.startsWith("Good bye")) {
                         ClientID=-1; //déconnection superficielle du client par id mis à -1
                         affichageFenetre.arret();
