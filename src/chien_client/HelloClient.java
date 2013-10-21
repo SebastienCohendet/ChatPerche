@@ -18,7 +18,7 @@ public static void main(String args[]) {
         String URL;
         int port=8888;
         int ClientID=0;
-        
+        Fenetre fenetre = new Fenetre();
             try {
                 // Récupération d'un stub sur l'objet serveur.
                 // Calcul de l’URL du serveur
@@ -38,8 +38,20 @@ public static void main(String args[]) {
                         ClientID= Integer.parseInt(reponse.substring(11));
 
                     System.out.println(reponse);
+                    
+                    //Affichage toutes les 100ms 
+                    while (true) {
+                        fenetre.affiche("resultat du displayAll");
+                        try {
+                            Thread.sleep(100);
+                         } 
+                         catch (InterruptedException e) {
+                            e.printStackTrace();
+                         }
+                    }
                 }
-            } catch (Exception exc) {
+            } 
+            catch (Exception exc) {
                 System.out.println("Wouaf wouaf !");
             }
     } 
