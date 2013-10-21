@@ -35,7 +35,7 @@ public class threadAffichage extends Thread {
             } catch (RemoteException ex) {
                 ex.printStackTrace();
             }
-            fenetre.affiche(ls);
+            this.fenetre.affiche(ls);
             try {
                 Thread.sleep(100);
              } 
@@ -51,5 +51,6 @@ public class threadAffichage extends Thread {
         LinkedList<String> attente = new LinkedList<String>();
         attente.add("Vous vous êtes déconnecté ...");
         fenetre.affiche(attente);
+
     }
 }

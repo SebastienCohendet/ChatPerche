@@ -20,6 +20,7 @@ public class Fenetre extends JFrame {
 		//Termine le processus lorsqu'on clique sur la croix rouge
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+                this.setAlwaysOnTop(true);
 		this.setContentPane(jpanel);
 	
 	}
