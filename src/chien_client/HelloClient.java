@@ -36,7 +36,6 @@ public static void main(String args[]) {
                     Scanner sc = new Scanner(System.in);
                     System.out.println("Saisissez un message : ");
                     String message = sc.nextLine();  
-                    threadAffichage affichageFenetre = new threadAffichage("affichage", obj);
                     
                     Requete req = new Requete(ClientID, message);
                     String reponse = obj.requeteClient(req);
