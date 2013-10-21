@@ -17,7 +17,7 @@ public class HelloClient {
 public static void main(String args[]) {
         String URL;
         int port=8888;
-        int ClientID=0;
+        int ClientID=-1;
         
             try {
                 // Récupération d'un stub sur l'objet serveur.
@@ -35,12 +35,16 @@ public static void main(String args[]) {
                     Requete req = new Requete(ClientID, message);
                     String reponse = obj.requeteClient(req);
                     if (reponse.startsWith("Connecté :"))
-                        ClientID= Integer.parseInt(reponse.substring(11));
+                        ClientID = Integer.parseInt(reponse.substring(11));
+                    else if (reponse.startsWith("Good bye"))
+                        ClientID=-1; //déconnection superficielle du client par id mis à -1
 
                     System.out.println(reponse);
+                    
+                    
                 }
             } catch (Exception exc) {
-                System.out.println("Wouaf wouaf !");
+                exc.printStackTrace();;
             }
     } 
 }

@@ -24,6 +24,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
     
     // Implémentation du constructeur
     public ChatPerche() throws java.rmi.RemoteException {
+        this.messages = new LinkedList<Message>();
         this.personnesConnectees = new LinkedList<Integer>();
         System.out.println("Serveur lancé");
     }
@@ -31,17 +32,19 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
     // Implémentation de la méthode distante
     public String requeteClient(Requete req) throws java.rmi.RemoteException {
         String message = req.getMessage();
+        
         if (message.startsWith("connect")) 
             return this.connect();
+        if (req.getClientID()==-1)
+           return "Vous n'êtes pas connecté";
         else if (message.startsWith("send"))
-            return this.send(message.substring(0,5), req.getClientID());
+            return this.send(message.substring(5), req.getClientID());
         else if (message.startsWith("bye"))
             return this.bye(req.getClientID());
          else if (message.startsWith("who"))
             return this.who();
         else {
-            System.out.println("Error");
-            return "gag";
+             return  "Commande inconnue";
         }
 
     }
@@ -71,7 +74,7 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         } 
         String aAfficher = "L'utilisateur " + id + " s'est déconnecté";
         System.out.println(aAfficher);
-        return aAfficher;
+        return "Good bye";
         
     }
     
@@ -96,6 +99,20 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
         return result;
     }
     
+     /**
+     * Affiche tous les messages envoyés
+     * @return String
+     * @throws java.rmi.RemoteException 
+     */
+    public String displayAll() throws java.rmi.RemoteException {
+        String result = "";
+        Iterator<Message> itr = this.messages.iterator();
+        while (itr.hasNext()){
+            Message m = itr.next();
+            result += "Client " + m.getClientID() + " a dit : " + m.getMessage() + "\n";
+        }
+        return result;
+    }
     
     /**
      * Fonction d'envoi d'un message texte (mot clef "send")
