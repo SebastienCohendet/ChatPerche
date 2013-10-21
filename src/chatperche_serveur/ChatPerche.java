@@ -65,7 +65,9 @@ public class ChatPerche extends UnicastRemoteObject implements Chaterface {
             id++;
         } 
         personnesConnectees.add(id);
+        String message = "L'utilisateur " + id + " s'est connecté";
         System.out.println("L'utilisateur " + id + " s'est connecté");
+        messages.add(new Message(message, id));
         return "Connecté : "+id;
     }
     
