@@ -6,6 +6,7 @@ package chien_client;
  */
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
 
 
 public class Fenetre extends JFrame {
@@ -20,12 +21,14 @@ public class Fenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setContentPane(jpanel);
-                jpanel.setString("Ouverture de l'application ...");
+                LinkedList<String> attente = new LinkedList<String>();
+                attente.add("En attente de connexion");
+                jpanel.setString(attente);
 	
 	}
 	
-	  public void affiche(String s){
-		      jpanel.setString(s);
+	  public void affiche(LinkedList<String> ls){
+		      jpanel.setString(ls);
 		      jpanel.repaint(); 
 	  } 
 

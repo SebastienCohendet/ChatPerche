@@ -4,6 +4,8 @@
  */
 package Commun;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Sebastien
@@ -20,6 +22,6 @@ public interface Chaterface extends java.rmi.Remote {
     
     public String send(String message, int idUtilisateur) throws java.rmi.RemoteException;
     
-    public String displayAll() throws java.rmi.RemoteException;
+    public LinkedList<String> displayAll() throws java.rmi.RemoteException;
 
 }
