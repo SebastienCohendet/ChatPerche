@@ -26,6 +26,8 @@ public static void main(String args[]) {
                         + port + "/mon_serveur";
                 Chaterface obj = (Chaterface) Naming.lookup(URL);
                 
+                threadAffichage fenetreGraphique = new threadAffichage("affichage", obj);
+                
                 while(true) {
                     // Appel d'une méthode sur l'objet distant.
                     Scanner sc = new Scanner(System.in);
@@ -47,4 +49,8 @@ public static void main(String args[]) {
                 exc.printStackTrace();;
             }
     } 
+
+    private static void affichage(Chaterface obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
