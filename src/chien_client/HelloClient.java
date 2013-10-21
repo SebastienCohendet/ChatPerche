@@ -22,9 +22,14 @@ public static void main(String args[]) {
             try {
                 // Récupération d'un stub sur l'objet serveur.
                 // Calcul de l’URL du serveur
-                URL = "//192.168.177.1:"
-                        + port + "/mon_serveur";
+               /* URL = "//192.168.177.1:"
+                        + port + "/mon_serveur";*/
+                 URL = "//" + InetAddress.getLocalHost().getHostName() + ":"
+                 + port + "/mon_serveur";
                 Chaterface obj = (Chaterface) Naming.lookup(URL);
+                
+                threadAffichage affichageFenetre = new threadAffichage("affichage", obj);
+                
                 
                 while(true) {
                     // Appel d'une méthode sur l'objet distant.
