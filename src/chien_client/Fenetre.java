@@ -21,9 +21,6 @@ public class Fenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setContentPane(jpanel);
-                LinkedList<String> attente = new LinkedList<String>();
-                attente.add("En attente de connexion");
-                jpanel.setString(attente);
 	
 	}
 	

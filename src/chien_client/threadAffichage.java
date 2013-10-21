@@ -17,16 +17,17 @@ public class threadAffichage extends Thread {
 
     private Chaterface obj;
     private boolean stop;
+    Fenetre fenetre;
     
     public threadAffichage(String name, Chaterface obj) {
         super(name);
         this.obj = obj;
-        this.stop = false;
     }
     
     public void run() {
-        Fenetre fenetre = new Fenetre();
+        fenetre = new Fenetre();
         LinkedList<String> ls = new LinkedList<String>();
+        this.stop = false;
         //Affichage toutes les 100ms 
         while (!stop) {
             try {
@@ -47,5 +48,8 @@ public class threadAffichage extends Thread {
 
     public void arret() {
         this.stop = true;
+        LinkedList<String> attente = new LinkedList<String>();
+        attente.add("Vous vous êtes déconnecté ...");
+        fenetre.affiche(attente);
     }
 }
